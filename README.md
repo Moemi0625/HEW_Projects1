@@ -1,6 +1,6 @@
 # Webtoon 紹介サイト
 
-Spring Boot と PostgreSQL を使用して作成された Webtoon 紹介サイトを制作します。
+Spring Boot と PostgreSQL を使用して Webtoon 紹介サイトを制作します。
 
 ## 解決したい部分
 
