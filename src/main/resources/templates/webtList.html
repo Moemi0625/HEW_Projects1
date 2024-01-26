@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WEBTOON LIST</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <!-- Add your other head elements here -->
+</head>
+<body>
+
+<form th:action="@{/webt/query}" method="post" th:object="${webtQuery}">
+    <div style="display: flex">
+       <table border="1">
+    <tr>
+        <th>タイトル</th>
+        <th>作者名</th>
+        <th>連載開始年</th>
+        <th>完結作品</th>
+    </tr>
+    <tr>
+        <td>
+            <input type="text" name="title" size="20" th:value="*{title}" placeholder="タイトル名">
+        </td>
+        <td>
+            <input type="text" name="author" size="20" th:value="*{author}" placeholder="作者名">
+        </td>
+        <td>
+            <input type="text" name="startYearFrom" th:value="*{startYearFrom}" size="10" placeholder="yyyy">
+            ～
+            <input type="text" name="startYearTo" th:value="*{startYearTo}" size="10" placeholder="yyyy">
+        </td>
+        <td>
+            <input type="checkbox" value="Y" th:field="*{done}">
+            完結
+        </td>
+    </tr>
+  <th>ジャンル</th>
+<td colspan="3">
+    <label><input type="checkbox" name="genres" value="action" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'action')}"> Action</label>
+    <label><input type="checkbox" name="genres" value="romance" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'romance')}"> Romance</label>
+    <label><input type="checkbox" name="genres" value="fantasy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'fantasy')}"> Fantasy</label>
+    <br>
+    <label><input type="checkbox" name="genres" value="suspense" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'suspense')}"> Suspense</label>
+    <label><input type="checkbox" name="genres" value="comedy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'comedy')}"> Comedy</label>
+    <label><input type="checkbox" name="genres" value="others" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'others')}"> Others</label>
+</td>
+
+</table>
+
+      <button type="submit" th:formaction="@{/webt/query}">検索</button>
+    </div>
+    <div th:if="${#fields.hasErrors('startYearFrom')}" th:errors="*{startYearFrom}" th:errorclass="red"></div>
+    <div th:if="${#fields.hasErrors('startYearTo')}" th:errors="*{startYearTo}" th:errorclass="red"></div>
+    <hr>
+   
+   <a th:href="@{/webt/create}">新規追加</a>
+  </form>
+
+<table>
+    <thead>
+        <tr>
+            <!-- Display only the basic information in the list -->
+            <th>タイトル</th>
+            <th>作者</th>
+            <th>表紙</th>
+            <th>詳細</th> <!-- Add a new column for the Details link -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="webt : ${webtList}">
+            <td>
+                <a th:href="@{/webt/{id}(id=${webt.id})}" th:text="${webt.title}"></a>
+            </td>
+            <td th:text="${webt.author}"></td>
+            <td>
+                <img th:src="@{${webt.imagePath}}" alt="Webtoon Image" width="100" height="auto">
+            </td>
+            <td>
+                <!-- Create a link to the details page with the webt.id as a parameter -->
+                <a th:href="@{/webt/details/{id}(id=${webt.id})}">詳細</a>
+            </td>
+        </tr>
+    </tbody>
+    
+</table>
+</body>
+</html>

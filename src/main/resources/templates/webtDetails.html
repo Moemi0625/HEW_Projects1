@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WEBTOON LIST</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <!-- Add your other head elements here -->
+</head>
+<body>
+
+<h1>Webtoon Details</h1>
+
+<div th:if="${webt != null}" th:object="${webt}">
+    <p>ID: <span th:text="${webt.id}"></span></p>
+    <p>タイトル: <span th:text="${webt.title}"></span></p>
+    <p>作者: <span th:text="${webt.author}"></span></p>
+    <!-- Add the rest of the details here -->
+    <p>表紙: <img th:src="@{${webt.imagePath}}" alt="Webtoon Image" width="200" height="auto"></p>
+    <p>あらすじ: <span th:text="${webt.synopsis}"></span></p>
+    <p>評価: <span th:text="${webt.rating != null ? '★'.repeat(webt.rating) : ''}"></span></p>
+    <p>リリース年: <span th:text="${webt.startYear}"></span></p>
+	  <p>
+	    ジャンル:
+	    <span th:each="genre, iterStat : ${webt.genres}">
+	        <span th:text="${genre}"></span>
+	        <span th:if="${!iterStat.last}">、</span>
+	    </span>
+	</p>
+    <p>完結: <span th:text="${webt.done == 'Y' ? '完結' : '未完結'}"></span></p>
+</div>
+
+<a th:href="@{/webt}">一覧に戻る</a>
+
+</body>
+</html>

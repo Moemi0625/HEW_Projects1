@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WEBTOON LIST</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Webtoon Form</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+    <!-- Add your other head elements here -->
+</head>
+<body>
+    <h2>Create Webtoon</h2>
+    
+    <form th:action="@{/}" th:object="${webtData}" method="post" enctype="multipart/form-data">
+    
+        <label for="title">作品タイトル</label>
+        <input type="text" id="title" th:field="*{title}" required>
+        <br>
+
+        <label for="author">作者</label>
+        <input type="text" id="author" th:field="*{author}" required>
+        <br>
+
+        <label for="genres">ジャンル</label>
+        <select id="genres" th:field="*{genres}" multiple required>
+            <option value="action">Action</option>
+            <option value="romance">Romance</option>
+            <option value="fantasy">Fantasy</option>
+
+        </select>
+        <br>
+
+        <label for="startYear">連載開始年</label>
+        <input type="number" id="startYear" th:field="*{startYear}" required>
+        <br>
+
+        <label>ステータス</label>
+        <input type="checkbox" value="Y" th:field="*{done}">完結
+        <br>
+
+        <label for="synopsis">あらすじ</label>
+        <textarea id="synopsis" th:field="*{synopsis}" required></textarea>
+        <br>
+
+        <label for="imageFile">表紙</label>
+        <input type="file" id="imageFile" name="imageFile" accept="image/*" th:field="*{imageFile}" required>
+        <br>
+
+        <button type="submit" th:formaction="@{/webt/create}">登録</button>
+        <button type="cancel" th:formaction="@{/webt/cancel}">キャンセル</button>
+    </form>
+</body>
+</html>
