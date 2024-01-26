@@ -5,6 +5,84 @@
     <title>WEBTOON LIST</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
     <!-- Add your other head elements here -->
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .webtoon-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .webtoon-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 200px; /* Adjust the width as needed */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .webtoon-details {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+    
+     <style>
+    #nav {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    #nav li {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    #nav a,
+    #nav span {
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        color: #333;
+        background-color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    #nav a:hover {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+
+    #nav span.current {
+        background-color: yellow;
+         color: #333;
+    }
+
+    #nav span.disabled {
+        pointer-events: none;
+        color: #aaa;
+        border-color: #aaa;
+    }
+</style>
 </head>
 <body>
 
@@ -53,35 +131,44 @@
     <div th:if="${#fields.hasErrors('startYearTo')}" th:errors="*{startYearTo}" th:errorclass="red"></div>
     <hr>
    
-   <a th:href="@{/webt/create}">新規追加</a>
+  <button type="button" onclick="location.href='/webt/create'">新規追加</button>
+   
   </form>
 
-<table>
-    <thead>
-        <tr>
-            <!-- Display only the basic information in the list -->
-            <th>タイトル</th>
-            <th>作者</th>
-            <th>表紙</th>
-            <th>詳細</th> <!-- Add a new column for the Details link -->
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="webt : ${webtList}">
-            <td>
+<div class="webtoon-list">
+    <div th:if="${webtList != null && #lists.size(webtList) != 0}" th:each="webt : ${webtList}">
+        <div class="webtoon-item">
+            <img th:src="@{${webt.imagePath}}" alt="Webtoon Image">
+            <div class="webtoon-details">
                 <a th:href="@{/webt/{id}(id=${webt.id})}" th:text="${webt.title}"></a>
-            </td>
-            <td th:text="${webt.author}"></td>
-            <td>
-                <img th:src="@{${webt.imagePath}}" alt="Webtoon Image" width="100" height="auto">
-            </td>
-            <td>
-                <!-- Create a link to the details page with the webt.id as a parameter -->
+                <p th:text="${webt.author}"></p>
                 <a th:href="@{/webt/details/{id}(id=${webt.id})}">詳細</a>
-            </td>
-        </tr>
-    </tbody>
-    
-</table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div th:if="${webtList != null && #lists.size(webtList) != 0}">
+        <div style="text-align: center; margin:10px 0px 10px;">
+            <span th:text="|${webtPage.getNumber() + 1} / ${webtPage.getTotalPages()} ページを表示中|"></span>
+        </div>
+        <ul id="nav">
+            <li>
+                <span th:if="${webtPage.isFirst()}" class="disabled">＜</span>
+                <a th:unless="${webtPage.isFirst()}" th:href="@{/webt/query(page = ${webtPage.getNumber() - 1})}">＜</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(0, webtPage.getTotalPages() - 1)}">
+                <span th:if="${i == webtPage.getNumber()}" class="current" th:text="${i + 1}"></span>
+                <a th:if="${i != webtPage.getNumber()}" th:href="@{/webt/query(page=${i})}" th:text="${i + 1}"></a>
+            </li>
+            <li>
+                <span th:if="${webtPage.isLast()}" class="disabled">＞</span>
+                <a th:unless="${webtPage.isLast()}" th:href="@{/webt/query(page = (${webtPage.getNumber() + 1}))}">＞</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>
