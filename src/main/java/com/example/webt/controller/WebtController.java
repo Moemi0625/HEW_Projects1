@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.webt.config.Config;
 import com.example.webt.dao.WebtDaoImpl;
 import com.example.webt.entity.Webt;
 import com.example.webt.form.WebtData;
@@ -154,9 +155,10 @@ public class WebtController {
     private String saveImage(MultipartFile imageFile) {
         // 画像を保存するロジックを実装
         try {
-            String imagePath = "images/" + UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            String imagePath = Config.IMAGE_PATH + fileName;
             Files.copy(imageFile.getInputStream(), Paths.get(imagePath), StandardCopyOption.REPLACE_EXISTING);
-            return imagePath;
+            return "/images/" + fileName;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
