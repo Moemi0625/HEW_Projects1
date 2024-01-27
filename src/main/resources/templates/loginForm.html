@@ -1,32 +1,36 @@
-<!DOCTYPE html>
-<html lang="jp">
-  <head>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>WEBTOON LIST</title>
+ <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MANHWA TO MATCH</title>
-    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
     <link rel="icon" href="favicon.ico">
-    <link rel="icon" sizes="200x200" href="./images/favicon.png">
+    <link rel="icon" sizes="200x200" href="../images/favicon.png">
   </head>
+
   <body>
     <div class="navigation">
       <ul>
         <li class="list">
-          <a href="index.html">
+           <a th:href="@{/home}">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
           </a>
         </li>
         <li class="list">
-          <a href="BookSearch.html">
+           <a th:href="@{/webt}">
             <span class="icon"
               ><ion-icon name="search-outline"></ion-icon></span>
             <span class="title">作品一覧・検索</span>
           </a>
         </li>
         <li class="list">
-          <a href="BookMark.html">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="bookmark-outline"></ion-icon>
             </span>
@@ -34,35 +38,36 @@
           </a>
         </li>
         <li class="list">
-          <a href="Posting.html">
+          <a href="#">
             <span class="icon"
               > <ion-icon name="calendar-clear-outline"></ion-icon></span>
             <span class="title">SNS掲示板</span>
           </a>
         </li>
-        <li class="list active">
-          <a href="UserAcctList.html">
+        <li class="list">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="grid-outline"></ion-icon></span>
             <span class="title">USER一覧</span>
           </a>
         </li>
         <li class="list">
-          <a href="HowToUse.html">
+          <a th:href="@{/new}">
             <span class="icon"
               ><ion-icon name="help-circle-outline"></ion-icon
             ></span>
-            <span class="title">使い方・利用規約</span>
+            <span class="title">初めての方へ</span>
           </a>
         </li>
         <div class="login">
-        <li class="list">
-          <a href="Login.html">
-            <span class="icon"
-              ><ion-icon name="person-circle-outline"></ion-icon
-            ></span>
-            <span class="title">LOGIN・新規登録</span>
-          </a>
+        <li class="list active">
+         <a th:href="@{/}">
+    <span class="icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
+    </span>
+    <span class="title">LOGIN・新規登録</span>
+</a>
+
         </li>
         <li class="list" >
           <a onclick="openModal()">
@@ -82,17 +87,18 @@
           </div>
           <script src="script.js"></script>
         <li class="list">
-          <a href="UserAcctMng.html">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="settings-outline"></ion-icon></span>
             <span class="title">管理者ページ</span>
           </a>
         </li>
         <div class="navlogo"><p>
-      <img src="./images/logo-site2.png">©m.akahori</p></div>
+      <img src="../images/logo-site2.png">©m.akahori</p></div>
       </div>
       </ul>
     </div>
+
 
     <script
       type="module"
@@ -117,95 +123,42 @@
         item.addEventListener("click", activeLink);
       });
     </script>
-
-<h4 class="topnav"><a href ="index.html">HOME</a> ＞ LOGIN ＞ USER一覧</h4>
-
+   
+<h4 class="topnav" style="margin-bottom:-15px;"><a href ="index.html">HOME</a> ＞ LOGIN</h4>
 <section class="main-section">
+    
+  <form th:action="@{/login/do}" method="post" th:object="${loginData}">
+  <div class="acct-wrp">
   
-  <div class="user-list">
-    <h3>USER一覧</h3><br>
-
-    <style>
-
-      .user-list{
-        padding: 20px;
-        display: flex;
-      }
-      .user-box {
-          width: 370px;
-          border: 1px solid #ddd;
-          margin: 10px;
-          display: flex;
-          align-items: center;
-          padding: 20px;
-          height:170px;
-      
-      }
-
-      .user-icon {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
-
-      .user-icon:hover img {
-          filter: brightness(70%);
-      }
-
-      .user-icon img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          object-fit: cover;
-          cursor: pointer;
-      }
-
-      .user-info {
-          flex: 2;
-          padding-left: 20px;
-      }
-
-      .user-details {
-          text-align: center;
-      }
-  </style>
-
-  <div class="user-box">
-      <div class="user-icon">
-          <img src="https://via.placeholder.com/100" alt="User Icon" onclick="window.location.href='/user_details'">
+   <h3 style="margin:10px auto 30px;">Login</h3>
+     
+        <ul>
+            <li><label>ユーザーID：<input type="text" name="loginId">
+          <div th:if="${#fields.hasErrors('loginId')}" 
+            th:errors="*{loginId}" th:errorclass="red"></div></li>
+            <li><label>パスワード：<input type="password" name="password">
+          <div th:if="${#fields.hasErrors('password')}" 
+            th:errors="*{password}" th:errorclass="red"></div>
+        </ul>
+        <div class="button-area">
+          <input type="reset" value="リセット">
+          <input type="submit" value="ログイン">
       </div>
-      <div class="user-info">
-          <p>User ID: 123</p>
-          <p>Occupation: Developer</p>
-          <p>Location: Tokyo, Japan</p>
+    </div>
+
+    <h4>↓はじめての方はこちらから↓</h4><br>
+    <button class="formanager" style="margin-bottom:45px;"> <a th:href="@{/regist}">新規登録</a></button>
+   
+  </form>
+ 
+    <footer> 
+      <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
+
+      <div class="title-wrapper">
+        <img src="../images/logo-site5.png">
       </div>
-  </div>
-
-  <div class="user-box">
-    <div class="user-icon">
-        <img src="https://via.placeholder.com/100" alt="User Icon" onclick="window.location.href='/user_details'">
-    </div>
-    <div class="user-info">
-        <p>User ID: 123</p>
-        <p>Occupation: Developer</p>
-        <p>Location: Tokyo, Japan</p>
-    </div>
-</div>
-
-  </div>
-
-  
-  <footer> 
-    <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
-
-    <div class="title-wrapper">
-      <img src="./images/logo-site5.png">
-    </div>
-  </footer>
+    </footer>
 </section>
-
-
 
   </body>
 </html>

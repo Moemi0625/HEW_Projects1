@@ -1,0 +1,33 @@
+{"properties": [
+  
+  {
+    "name": "spring.datasource.accounts.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.secondary.driver-class-name'"
+  },
+  {
+    "name": "spring.datasource.accounts.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.secondary.url'"
+  },
+  {
+    "name": "spring.datasource.accounts.username",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.secondary.username'"
+  },
+  {
+    "name": "spring.datasource.accounts.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.secondary.password'"
+  },
+  {
+    "name": "spring.datasource.accounts.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.second.driver-class-name'"
+  },
+  {
+    "name": "spring.datasource.accounts.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.datasource.second.url'"
+  }
+]}

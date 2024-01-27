@@ -58,6 +58,7 @@ public class WebtData {
         Webt webt = new Webt();
         webt.setId(id);
         webt.setTitle(title);
+        webt.setAuthor(author);
 
         if (imageFile != null) {
             webt.setImagePath(imageFile.getOriginalFilename());

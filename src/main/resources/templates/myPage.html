@@ -1,13 +1,61 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="jp">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MANHWA TO MATCH</title>
-    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
     <link rel="icon" href="favicon.ico">
     <link rel="icon" sizes="200x200" href="./images/favicon.png">
+    
+    <style>
+     
+      .profile-container {
+  
+        width:800px;
+        align-items: center;
+        height: 800px;
+        margin:50px auto;
+      
+      }
+
+      .list-title button{
+        margin-left: 75%;
+      }
+  
+      .profile-container img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+  
+      .profile-container button {
+        margin: 20px;
+        padding: 10px 20px;
+        background-color: #505050;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+  
+      .pr-private {
+        display:right;
+        margin-top: 20px;
+      }
+
+      .profile-container h4{
+        display: inline-block;
+        margin: 20px;
+      }
+
+      h5{
+        font-size: 20px;
+      }
+  
+    </style>
   </head>
   <body>
     <div class="navigation">
@@ -55,8 +103,8 @@
             <span class="title">使い方・利用規約</span>
           </a>
         </li>
-        <div class="login">
-        <li class="list active">
+        <div class="login active">
+        <li class="list">
           <a href="Login.html">
             <span class="icon"
               ><ion-icon name="person-circle-outline"></ion-icon
@@ -118,32 +166,40 @@
       });
     </script>
 
-   
-<h4 class="topnav"><a href ="index.html">HOME</a> ＞ LOGIN</h4>
+<h4 class="topnav"><a href ="index.html">HOME</a> ＞ LOGIN ＞ MY PAGE</h4>
+
 <section class="main-section">
- 
-    <div class="acct-wrp" style="margin-top: -10px;">
-    <h4>アカウント情報を入力してください</h4>
-        <ul>
-            <li><label>ユーザーID：<input type="text" name="name1" value=""></li>
-            <li><label>パスワード：<input type="password" name="name1" value=""></li>
-        </ul>
-        <div class="button-area">
-          <input type="reset" value="リセットする">
-          <input type="submit" value="ログインする">
-      </div>
+    
+    <div style="margin-top: -80px;">
+	    <div class="profile-container">
+	      <div class="user-icon">
+	        <img src="https://via.placeholder.com/100" alt="User Icon" onclick="window.location.href='/user_details'">
+	    </div>    
+	    
+		    <!-- Access accountId from the model (session attribute added in the controller) -->
+		    <p th:text="${accountId}"></p>
+		    
+		      <h5>User ID : OOOOOO</h5> 
+		      <h4>Name : 未入力</h4>
+		      <h4>Gender：未入力</h4>
+		      <h4>Occupation：未入力</h4><br>
+		      <textarea rows="4" cols="50" placeholder="未入力"></textarea><br><br>
+		      <button>ブックマーク</button><button>プロフィール編集</button>
+		
+	         <a th:href="@{/logout}">Logout</a>
+	      
+	    </div>
+	    
     </div>
 
-    <h4>↓はじめての方はこちらから↓</h4><br>
-    <button class="formanager"><a href="Signup.html" style="font-size: 18px;">新規アカウントを作成する</a></button><br><br><br>
-    <footer> 
+    <footer style="margin-top: -330px; "> 
       <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
 
       <div class="title-wrapper">
         <img src="./images/logo-site5.png">
-      </div>
+      </div >
     </footer>
-</section>
+  </section>
 
   </body>
 </html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MANHWA TO MATCH</title>
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+    <script defer src="script.js"></script>
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" sizes="200x200" href="./images/favicon.png">
+    <style>
+   
+	   body {
+	    overflow-x: hidden; /* Disable horizontal scrolling */
+	    overflow-y: hidden; /* Disable horizontal scrolling */
+	  }
+	  .swiper-container {
+	    height: 100%;
+	    max-width: 600px; /* Keep the maximum width for the images */
+	    margin: 0 auto; /* Center the slider horizontally */
+	    position: relative;
+	  }
+	
+	  .swiper-slide {
+	    text-align: center;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    transition: opacity 0.5s ease, transform 5s ease;
+	  }
+	
+	  .swiper-slide.active {
+	    opacity: 1;
+	  }
+	
+	  .swiper-container img {
+	    max-width: 100%; /* Set a maximum width for the images */
+	    height: auto; /* Allow the height to adjust proportionally */
+	    margin-bottom: 50px; /* Center the image horizontally */
+	    margin-top:-20px;
+	    max-height: 600px; /* Keep the maximum height for the images */
+	  }
+	
+	  .swiper-slide h3 {
+	    font-size: 15px;
+	    white-space: nowrap;
+	    display: inline-block;
+	    vertical-align: middle;
+	  }
+	
+	  .swiper-button-next, .swiper-button-prev {
+	    position: absolute;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    margin: 0; /* Remove default margin */
+	   display: none !important;
+  }
+	
+	</style>
+</head>
+  
+  <body>
+    <div class="navigation">
+      <ul>
+        <li class="list active">
+           <a th:href="@{/home}">
+            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+            <span class="title">HOME</span>
+          </a>
+        </li>
+        <li class="list">
+           <a th:href="@{/webt}">
+            <span class="icon"
+              ><ion-icon name="search-outline"></ion-icon></span>
+            <span class="title">作品一覧・検索</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="bookmark-outline"></ion-icon>
+            </span>
+            <span class="title">BOOKMARK</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              > <ion-icon name="calendar-clear-outline"></ion-icon></span>
+            <span class="title">SNS掲示板</span>
+          </a>
+        </li>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="grid-outline"></ion-icon></span>
+            <span class="title">USER一覧</span>
+          </a>
+        </li>
+        <li class="list">
+          <a th:href="@{/new}">
+            <span class="icon"
+              ><ion-icon name="help-circle-outline"></ion-icon
+            ></span>
+            <span class="title">初めての方へ</span>
+          </a>
+        </li>
+        <div class="login">
+        <li class="list">
+         <a th:href="@{/}">
+    <span class="icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
+    </span>
+    <span class="title">LOGIN・新規登録</span>
+	</a>
+        </li>
+        <li class="list" >
+          <a onclick="openModal()">
+            <span class="icon"
+              ><ion-icon name="log-out-outline"></ion-icon
+            ></span>
+            <span class="title" >LOGOUT</span>
+          </a>
+        </li>
+
+          <div id="lo" class="lo">
+            <div class="lo-content">
+              <h4>ログアウトしてもよろしいですか？</h4>
+              <button onclick="closeModal()" class="lo-btn">キャンセル</button>
+              <button onclick="logout()" class="lo-btn">はい</button>
+            </div>
+          </div>
+          <script src="script.js"></script>
+        <li class="list">
+          <a href="#">
+            <span class="icon"
+              ><ion-icon name="settings-outline"></ion-icon></span>
+            <span class="title">管理者ページ</span>
+          </a>
+        </li>
+        <div class="navlogo"><p>
+      <img src="./images/logo-site2.png">©m.akahori</p></div>
+      </div>
+      </ul>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <script>
+      const list = document.querySelectorAll(".list");
+      console.log(list);
+      function activeLink() {
+        list.forEach((item) =>
+          // console.log(item);
+          item.classList.remove("active")
+        );
+        this.classList.add("active");
+      }
+
+      list.forEach((item) => {
+        item.addEventListener("click", activeLink);
+      });
+    </script>
+  
+	<button class="mailform" th:attr="data-href=@{/contactForm}">
+	  <a th:href="@{/contactForm}" style="color: black; text-decoration: none;">お問い合わせ</a>
+	</button>
+
+    
+ 
+  <section class="main-section" style="margin-left:-10px;">
+    
+	<div class="top-wrapper">
+	  <div class="top-left">
+	  
+	    <div class="siteheader">
+	      <img src="./images/logo-site1.png">
+	  </div>
+
+<div class="login-button">
+    <button><a th:href="@{/}">ログイン</a></button>
+    <button><a th:href="@{/webt}">作品一覧</a></button>
+    <button><a th:href="@{/new}">初めての方へ</a></button>
+</div>
+
+ <div>
+  
+   <div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="./images/recommended3.jpg" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/recommended1.jpg" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/recommended2.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/romance1.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/horror1.png" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/romance8.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/pop1.png" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/pop2.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/pop3.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/new3.jpg" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/new1.jpg" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/new2.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/romance1.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="./images/horror1.png" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/romance8.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/pop1.png" alt="漫画1">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/pop2.jpg" alt="漫画2">
+        </div>
+        <div class="swiper-slide">
+            <img src="../images/pop3.jpg" alt="漫画2">
+        </div>
+        
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+
+ <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+ 
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 3,
+    loop: true,
+    loopAdditionalSlides: 3,
+    coverflowEffect: {
+      rotate: 0,
+      stretch:0,
+      depth: 400,
+      modifier: 1,
+      slideShadows: false,
+    },
+    spaceBetween: 30,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    speed: 800,
+    on: {
+      slideChange: function () {
+        var activeSlide = this.slides[this.activeIndex];
+        var allSlides = this.slides;
+        for (var i = 0; i < allSlides.length; i++) {
+          allSlides[i].classList.remove('active');
+        }
+        activeSlide.classList.add('active');
+      },
+    },
+  });
+</script>
+
+  </section>
+
+  </body>
+</html>

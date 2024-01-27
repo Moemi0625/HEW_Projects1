@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.webt.config.Config;
 import com.example.webt.dao.WebtDaoImpl;
 import com.example.webt.entity.Webt;
 import com.example.webt.form.WebtData;
@@ -39,6 +40,7 @@ public class WebtController {
     private final WebtService webtService;
     private final HttpSession session;
     private final WebtDaoImpl webtDaoImpl;
+    
 
     @GetMapping("/webt")
     public ModelAndView showWebtList(ModelAndView mv,
@@ -76,8 +78,8 @@ public class WebtController {
 		}
 		return mv;
 	}
-    
-  
+
+
     @GetMapping("/webt/query")
     public ModelAndView queryWebt(@PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
         mv.setViewName("webtList");
@@ -151,12 +153,14 @@ public class WebtController {
         }
     }
 
+
     private String saveImage(MultipartFile imageFile) {
         // 画像を保存するロジックを実装
         try {
-            String imagePath = "images/" + UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
+            String imagePath = Config.IMAGE_PATH + fileName;
             Files.copy(imageFile.getInputStream(), Paths.get(imagePath), StandardCopyOption.REPLACE_EXISTING);
-            return imagePath;
+            return "/images/" + fileName;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -164,30 +168,64 @@ public class WebtController {
     }
 
     @GetMapping("/webt/{id}")
-	public ModelAndView webtById(@PathVariable(name = "id") int id, ModelAndView mv) {
-		mv.setViewName("webtForm");
-		Webt webt = webtRepository.findById(id).get(); 
-		mv.addObject("webtData", webt); 
-		session.setAttribute("mode", "update"); 
-		return mv;
-	}
+   	public ModelAndView webtById(@PathVariable(name = "id") int id, ModelAndView mv) {
+   		mv.setViewName("webtForm");
+   		Webt webt = webtRepository.findById(id).get(); 
+   		mv.addObject("webtData", webt); 
+   		session.setAttribute("mode", "update"); 
+   		return mv;
+   	}
 
-	@PostMapping("/webt/update")
-	public String updateWebt(@ModelAttribute @Validated WebtData webtData, BindingResult result, Model model) {
-		// エラーチェック
-		boolean isValid = webtService.isValid(webtData, result);
-		if (!result.hasErrors() && isValid) {
-			// エラーなし
-			Webt webt = webtData.toEntity();
-			webtRepository.saveAndFlush(webt); 
-			return "redirect:/webt";
-		} else {
-			// エラーあり
-			return "webtForm";
-		}
-	}
+    @PostMapping("/webt/update")
+    public String updateWebt(
+            @ModelAttribute @Validated WebtData webtData,
+            BindingResult result,
+            Model model,
+            @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+            RedirectAttributes redirectAttributes) {
 
-	@PostMapping("/webt/delete")
+        // エラーチェック
+        boolean isValid = webtService.isValid(webtData, result);
+        if (!result.hasErrors() && isValid) {
+            // エラーなし
+            Webt existingWebt = webtRepository.findById(webtData.getId()).orElse(null);
+
+            if (existingWebt != null) {
+                // 画像がアップロードされた場合にのみ新しい画像を保存
+                if (imageFile != null && !imageFile.isEmpty()) {
+                    String imagePath = saveImage(imageFile);
+                    existingWebt.setImagePath(imagePath);
+                }
+
+                // 他のデータを手動で更新
+                existingWebt.setAuthor(webtData.getAuthor());
+                existingWebt.setTitle(webtData.getTitle());
+                existingWebt.setRating(webtData.getRating());
+                existingWebt.setSynopsis(webtData.getSynopsis());
+                existingWebt.setDone(webtData.getDone());
+                existingWebt.setGenres(webtData.getGenres());
+                existingWebt.setStartYear(webtData.getStartYear());
+
+                // データベースに保存
+                webtRepository.saveAndFlush(existingWebt);
+
+                // リダイレクトして PRG パターンを適用
+                redirectAttributes.addFlashAttribute("successMessage", "更新が完了しました。");
+                return "redirect:/webt";
+            } else {
+                // 既存の Webt データが見つからない場合の処理
+                // エラーあり
+                return "redirect:/webt";
+            }
+        } else {
+            // エラーあり
+            return "webtForm";
+        }
+    }
+
+
+
+   	@PostMapping("/webt/delete")
 	public String deleteWebt(@ModelAttribute WebtData webtData) {
 		webtRepository.deleteById(webtData.getId());
 		return "redirect:/webt";
@@ -213,5 +251,6 @@ public class WebtController {
 	        return "redirect:/error"; 
 	    }
 	}
+
 
 }

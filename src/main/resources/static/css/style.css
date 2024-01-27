@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-body {
-	margin: 20px;
-	font-size: 14px;
-}
 
 table {
 	border: solid 1px #ddd;

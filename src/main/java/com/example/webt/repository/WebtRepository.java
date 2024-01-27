@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.webt.entity.Webt;
 
-//error:不要な `@Repository`
 @Repository
 public interface WebtRepository extends JpaRepository<Webt, Integer> { 
 	

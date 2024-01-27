@@ -1,68 +1,69 @@
-<!DOCTYPE html>
-<html lang="jp">
-  <head>
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MANHWA TO MATCH</title>
-    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
     <link rel="icon" href="favicon.ico">
-    <link rel="icon" sizes="200x200" href="./images/favicon.png">
-  </head>
+    <link rel="icon" sizes="200x200" href="../images/favicon.png">
+</head>
   <body>
-    <div class="navigation">
+     <div class="navigation">
       <ul>
         <li class="list">
-          <a href="index.html">
+           <a th:href="@{/home}">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
           </a>
         </li>
         <li class="list">
-          <a href="BookSearch.html">
+           <a th:href="@{/webt}">
             <span class="icon"
               ><ion-icon name="search-outline"></ion-icon></span>
             <span class="title">作品一覧・検索</span>
           </a>
         </li>
         <li class="list">
-          <a href="BookMark.html">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="bookmark-outline"></ion-icon>
             </span>
             <span class="title">BOOKMARK</span>
           </a>
         </li>
-        <li class="list active">
-          <a href="Posting.html">
+        <li class="list">
+          <a href="#">
             <span class="icon"
               > <ion-icon name="calendar-clear-outline"></ion-icon></span>
             <span class="title">SNS掲示板</span>
           </a>
         </li>
         <li class="list">
-          <a href="UserAcctList.html">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="grid-outline"></ion-icon></span>
             <span class="title">USER一覧</span>
           </a>
         </li>
         <li class="list">
-          <a href="HowToUse.html">
+          <a th:href="@{/new}">
             <span class="icon"
               ><ion-icon name="help-circle-outline"></ion-icon
             ></span>
-            <span class="title">使い方・利用規約</span>
+            <span class="title">初めての方へ</span>
           </a>
         </li>
         <div class="login">
-        <li class="list">
-          <a href="Login.html">
-            <span class="icon"
-              ><ion-icon name="person-circle-outline"></ion-icon
-            ></span>
-            <span class="title"><a href ="index.html">HOME</a> ＞ LOGIN・新規登録</span>
-          </a>
+        <li class="list active">
+         <a th:href="@{/}">
+    <span class="icon">
+        <ion-icon name="person-circle-outline"></ion-icon>
+    </span>
+    <span class="title">LOGIN・新規登録</span>
+</a>
+
         </li>
         <li class="list" >
           <a onclick="openModal()">
@@ -82,18 +83,19 @@
           </div>
           <script src="script.js"></script>
         <li class="list">
-          <a href="UserAcctMng.html">
+          <a href="#">
             <span class="icon"
               ><ion-icon name="settings-outline"></ion-icon></span>
             <span class="title">管理者ページ</span>
           </a>
         </li>
         <div class="navlogo"><p>
-      <img src="./images/logo-site2.png">©m.akahori</p></div>
+      <img src="../images/logo-site2.png">©m.akahori</p></div>
       </div>
       </ul>
     </div>
-    
+
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -118,27 +120,61 @@
       });
     </script>
 
+     
+<h4 class="topnav"><a href ="index.html">HOME</a> ＞ <a href="Login.html">LOGIN</a> > 新規登録</h4>
+
 <section class="main-section">
-  <h2 class="list-title">SNS掲示板</h2>
-  <h1><img src="./images/logo-site6.png"></h1>
-  
+ 
+    <div class="contact-form">
+         <h3 style="margin:20px auto 30px;">Register</h3>
 
-    <div class="board-wrapper">
-    <div class="board">board1</div>
-    <div class="board">board1</div>
-    <div class="board">board1</div>
-    <div class="board">board1</div>
-    <div class="board">board1</div>
-    <div class="board">board1</div>
-  </div>
-
-  <footer> 
-    <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
-
-    <div class="title-wrapper">
-      <img src="./images/logo-site5.png">
+    <div class="form-must">
+     <form th:action="@{/regist/do}" method"post" th:object="${registData}">
+        <div class="item">
+            <label class="label">ユーザID：</label>
+            <input type="text" name="loginId" th:value="*{loginId}">
+          <div th:if="${#fields.hasErrors('loginId')}" 
+            th:errors="*{loginId}" th:errorclass="red"></div>
+        </div>
+        <div class="item">
+          <label class="label">氏名：</label>
+         <input type="text" name="name" th:value="*{name}">
+          <div th:if="${#fields.hasErrors('name')}" 
+            th:errors="*{name}" th:errorclass="red"></div>
+      </div>
+        <div class="item">
+            <label class="label">パスワード：</label>
+             <input type="password" name="password1">
+            <div th:if="${#fields.hasErrors('password1')}" th:errors="*{password1}"
+            th:errorclass="red"></div>
+        </div>
+        <div class="item">
+          <label class="label">パスワード(確認)：</label>
+           <input type="password" name="password2">
+          <div th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}"
+            th:errorclass="red"></div>
+      </div>
     </div>
-  </footer>
+
+        <div class="button-area">
+          <input type="reset" value="リセット">
+    <input type="submit" value="登録">
+      </div>
+      </div>
+    
+  <div style="margin:40px auto 80px;">
+    <a th:href="@{/regist/cancel}">ログイン画面に戻る</a>
+    </div>
+  </form>
+  
+    </div>
+    <footer> 
+      <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
+
+      <div class="title-wrapper">
+        <img src="../images/logo-site5.png">
+      </div>
+    </footer>
 </section>
 
   </body>

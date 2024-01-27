@@ -1,18 +1,77 @@
 <!DOCTYPE html>
-<html lang="jp">
-  <head>
+<html lang="ja">
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MANHWA TO MATCH</title>
-    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+    <script defer src="script.js"></script>
     <link rel="icon" href="favicon.ico">
-    <link rel="icon" sizes="200x200" href="./images/favicon.png">
+    <link rel="icon" sizes="200x200" href="../images/favicon.png">
+    <style>
+        .q-body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin-top: -200px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea{
+            height: 150px;
+        }
+
+        button {
+            background-color: black;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin: 0px 10px 0px 10px;
+            width: 150px;
+        }
+
+        button:hover {
+            background-color: yellow;
+            color: black;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+    </style>
   </head>
+ 
   <body>
+   
     <div class="navigation">
       <ul>
-        <li class="list">
+        <li class="list active">
           <a href="index.html">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
@@ -55,7 +114,7 @@
             <span class="title">使い方・利用規約</span>
           </a>
         </li>
-        <div class="login active">
+        <div class="login">
         <li class="list">
           <a href="Login.html">
             <span class="icon"
@@ -81,7 +140,6 @@
             </div>
           </div>
           <script src="script.js"></script>
-      
         <li class="list">
           <a href="UserAcctMng.html">
             <span class="icon"
@@ -119,85 +177,36 @@
         item.addEventListener("click", activeLink);
       });
     </script>
+  
+  <h4 class="topnav"><a href ="index.html">HOME</a> ＞ FORM</h4>
+  <section class="main-section">
+<div class="q-body">
+   
+<form action="process_form.php" method="post">
+    <label for="name">お名前:</label>
+    <input type="text" id="name" name="name" required>
 
-     
-<h4 class="topnav"><a href ="index.html">HOME</a> ＞ <a href="Login.html">LOGIN</a> > 新規登録</h4>
+    <label for="email">メールアドレス:</label>
+    <input type="email" id="email" name="email" required>
 
-<section class="main-section">
- 
-    <div class="contact-form">
-        <h2>アカウント情報を入力してください</h2>
+    <label for="message">お問い合わせ内容:</label>
+    <textarea id="message" name="message" rows="4" placeholder="サイトについてなんでもどうぞ" required></textarea>
 
-    <div class="form-must">
-    <form action="confirm.php" method="GET">
-        <div class="item">
-            <label class="label">ユーザID：</label>
-            <input type="userid" id="userid" class="inputs" name="userid" required>
-        </div>
-        <div class="item">
-          <label class="label">メールアドレス：</label>
-          <input type="user-mail" id="user-mail" class="inputs" name="user-mail" required>
-      </div>
-        <div class="item">
-            <label class="label">パスワード：</label>
-            <input type="password" id="password" class="inputs" name="passowrd" required>
-        </div>
-        <div class="item">
-          <label class="label">パスワード確認：</label>
-          <input type="password" id="password" class="inputs" name="password-again" required>
-      </div>
-    </div>
+    <div class="button-container"> <button type="reset">リセットする</button>
+    <button type="submit">送信する</button></div>
+   
+</form></div>
 
-    <!-- <div class="form-free">
-      <h4>下の項目は任意でどうぞ</h4> -->
-        <!-- <div class="item">
-            <label class="label">性別：</label>
-                <input type="radio" class="inputs" name="gender" id="m" value="male"/>
-                <label for="m" selected >男性 / </label>
-                <input type="radio" class="inputs" name="gender" id="f" value="female"/>
-                <label for="f" >女性 / </label>
-                <input type="radio" class="inputs" name="gender" id="x" value="xgender"/>
-                <label for="x" >その他</label>
-        </div>
-      
-      </div>
-        <div class="item">
-          <label class="label">職業：</label>
-          <select class="inputs" name="job">
-              <option value="">選択してください</option>
-              <option value="公務員">公務員</option>
-              <option value="経営者・役員">経営者・役員</option>
-              <option value="会社員">会社員</option>
-              <option value="自営業">自営業</option>
-              <option value="自由業">自由業</option>
-              <option value="専業主婦">専業主婦</option>
-              <option value="パート・アルバイト">パート・アルバイト</option>
-              <option value="学生" selected>学生</option>
-              <option value="その他">その他</option>
-          </select>
-          </div> -->
-        
-       
-        <div class="item">
-            <textarea class="inputs" placeholder="最後に自己紹介をどうぞ(マイページのプロフィールに表示されます)"></textarea>
-        </div>
+<footer>
+<h4 class="footer-mini-nav" style="margin-top: -100px;"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
 
-        <div class="button-area">
-          <input type="reset" value="リセットする">
-          <input type="submit" value="送信する">
-      </div>
-      </div>
-       
-    </form><br>
-    </div>
-    <footer> 
-      <h4 class="footer-mini-nav"><a href ="index.html">HOMEのトップに戻る</a> | <a href ="HowToUse.html">サイトの使い方</a> | <a href ="BookSearch.html">作品一覧・検索</a> | <a href ="Login.html">ログイン・新規登録</a></h4>
-
-      <div class="title-wrapper">
-        <img src="./images/logo-site5.png">
-      </div>
-    </footer>
+<div class="title-wrapper">
+  <img src="./images/logo-site5.png">
+</div></footer>
 </section>
 
-  </body>
+
+
+
+</body>
 </html>
