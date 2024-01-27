@@ -24,6 +24,7 @@ public class WebtData {
     @NotEmpty(message = "ジャンルを少なくとも1つ選択してください")
     private List<String> genres;
     
+    // レビュー
     private Integer rating;
 
     // Getter method for rating
@@ -36,17 +37,23 @@ public class WebtData {
         this.rating = rating;
     }
 
+    // 連載開始年
     private Integer startYear;
+    
+    // startYearの形式をyyyyに固定
+    public void setStartYear(Integer startYear) {
+        this.startYear = startYear;
+    }
 
     /*** 完結したか（Y/N）*/
     private String done;
 
+    // あらすじ
     private String synopsis;
     
+    // ImagePath
     private MultipartFile imageFile;
     
-    
-
     public Webt toEntity() {
         Webt webt = new Webt();
         webt.setId(id);
@@ -62,11 +69,5 @@ public class WebtData {
         webt.setDone(done);
 
         return webt;
-    }
-
-
-    // startYearの形式をyyyyに固定
-    public void setStartYear(Integer startYear) {
-        this.startYear = startYear;
     }
 }

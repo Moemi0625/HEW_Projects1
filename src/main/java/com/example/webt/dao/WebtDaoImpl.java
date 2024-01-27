@@ -145,15 +145,15 @@ public class WebtDaoImpl implements WebtDao{
 	 		predicates.toArray(predArray);
 	 		query = query.select(root).where(predArray).orderBy(builder.asc(root.get(Webt_.id)));
 	 		// クエリ生成
-	 		TypedQuery<Webt> typedQuery = entityManager.createQuery(query); // ①
+	 		TypedQuery<Webt> typedQuery = entityManager.createQuery(query); 
 	 		// 該当レコード数取得
-	 		int totalRows = typedQuery.getResultList().size(); // ②
+	 		int totalRows = typedQuery.getResultList().size(); 
 	 		// 先頭レコードの位置設定
-	 		typedQuery.setFirstResult(pageable.getPageNumber() * pageable.getPageSize()); // ③
+	 		typedQuery.setFirstResult(pageable.getPageNumber() * pageable.getPageSize());
 	 		// 1 ページ当たりの件数
-	 		typedQuery.setMaxResults(pageable.getPageSize()); // ④
+	 		typedQuery.setMaxResults(pageable.getPageSize()); 
 	 		
-	 		Page<Webt> page = new PageImpl<Webt>(typedQuery.getResultList(), pageable, totalRows); //⑤
+	 		Page<Webt> page = new PageImpl<Webt>(typedQuery.getResultList(), pageable, totalRows);
 	 		return page; 
 	 	}
 

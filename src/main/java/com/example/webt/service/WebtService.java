@@ -18,6 +18,7 @@ import com.example.webt.repository.WebtRepository;
 @Service
 public class WebtService {
 
+	//Formのエラー表示
 	public boolean isValid(WebtData webtData, BindingResult result) {
 	    // 既存のバリデーション
 	    boolean isValid = validateTitleOrName("title", webtData.getTitle(), result);
@@ -28,7 +29,7 @@ public class WebtService {
 	        try {
 	            int year = webtData.getStartYear();
 	            
-	            // Ensure that the year is a 4-digit number
+	            // 4桁か確認
 	            if (String.valueOf(year).length() != 4) {
 	                result.rejectValue("startYear", "InvalidFormat", "年は4桁で入力してください");
 	                isValid = false;
@@ -44,9 +45,7 @@ public class WebtService {
 	    return isValid && !result.hasErrors();
 	}
 
-        
-      
-
+	//Formのエラー表示
     private boolean validateTitleOrName(String fieldName, String value, BindingResult result) {
         // Check if the input consists only of full-width spaces
         boolean isAllDoubleSpace = value.matches("^[　]+$");
@@ -59,13 +58,12 @@ public class WebtService {
         return true;
     }
     
-
+    
+    //検索機能のエラー表示（連載開始年）：不具合あり
     public boolean isValid(WebtQuery webtQuery, BindingResult result) {
         checkDateFormat(webtQuery.getStartYearFrom(), "startYearFrom", result);
         checkDateFormat(webtQuery.getStartYearTo(), "startYearTo", result);
-
-        // 他のバリデーションルールを追加する場合はここに追加
-
+        
         return !result.hasErrors();
     }
 

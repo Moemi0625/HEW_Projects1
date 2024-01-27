@@ -5,15 +5,51 @@
     <meta charset="UTF-8">
     <title>Webtoon Form</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
-    <!-- Add your other head elements here -->
+    <style>
+        body {
+         
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+h1{
+text-align:center;
+margin-top:50px;
+}
+        form {
+            text-align: center;
+        }
+
+        table {
+            margin: 30px auto 30px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        label {
+            width: 150px; /* 調整が必要に応じて変更してください */
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Create Webtoon</h2>
+    <h1>Create Webtoon</h1>
 
     <form th:action="@{/}" th:object="${webtData}" method="post" enctype="multipart/form-data">
 
         <table>
+           
         	 <tr>
 		        <th>id</th>
 		        <td>
@@ -83,17 +119,24 @@
         </table>
 
         <div th:if="${session.mode == 'update'}">
-      <button type="submit" th:formaction="@{/webt/update}">更新</button>
-      <button type="submit" th:formaction="@{/webt/delete}">削除</button>
-      <button type="submit" th:formaction="@{/webt/cancel}">キャンセル</button>
-    </div>
-    <div th:unless="${session.mode == 'update'}">
-      <button type="submit" th:formaction="@{/webt/create}">登録</button>
-      <button type="submit" th:formaction="@{/webt/cancel}">キャンセル</button>
-    </div>
-    
+            <button type="submit" th:formaction="@{/webt/update}">更新</button>
+            <button type="submit" th:formaction="@{/webt/delete}">削除</button>
+            <button type="submit" th:formaction="@{/webt/cancel}">キャンセル</button>
+        </div>
+        <div th:unless="${session.mode == 'update'}">
+            <button type="submit" th:formaction="@{/webt/create}">登録</button>
+            <button type="submit" th:formaction="@{/webt/cancel}">キャンセル</button>
+        </div>
+
     </form>
-    
+
 </body>
 
 </html>
+
+
+
+
+
+       
+

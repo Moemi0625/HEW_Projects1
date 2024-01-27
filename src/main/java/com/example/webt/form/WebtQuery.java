@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class WebtQuery {
+	
 	private String title;
 	private String author;
 	private String[] genres;

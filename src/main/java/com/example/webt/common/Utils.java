@@ -14,7 +14,7 @@ public class Utils {
             }
         } catch (ParseException | NumberFormatException e) {
             e.printStackTrace();
-            // パースエラーが発生した場合、適切に処理するか例外を再スローするなど
+            // パースエラーが発生した場合、適切に処理するか例外を再スローする
             return null;
         }
     }

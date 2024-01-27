@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>WEBTOON LIST</title>
     <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
-    <!-- Add your other head elements here -->
     <style>
         body {
             display: flex;
@@ -41,9 +40,7 @@
             text-align: center;
             margin-top: 10px;
         }
-    </style>
-    
-     <style>
+ 
     #nav {
         list-style: none;
         display: flex;
@@ -85,6 +82,21 @@
 </style>
 </head>
 <body>
+<h1>Webtoon List</h1>
+<style>
+    /* Add the following styles */
+    button#add-button {
+        position: fixed;
+        top: 10px; /* Adjust the top position as needed */
+        right: 10px; /* Adjust the right position as needed */
+        padding: 10px;
+       
+    }
+
+</style>
+
+<!-- Add the button with an ID for styling -->
+<button type="button" id="add-button" onclick="location.href='/webt/create'">新規追加</button>
 
 <form th:action="@{/webt/query}" method="post" th:object="${webtQuery}">
     <div style="display: flex">
@@ -93,7 +105,7 @@
         <th>タイトル</th>
         <th>作者名</th>
         <th>連載開始年</th>
-        <th>完結作品</th>
+        <th>ステータス</th>
     </tr>
     <tr>
         <td>
@@ -112,26 +124,29 @@
             完結
         </td>
     </tr>
-  <th>ジャンル</th>
+ 
 <td colspan="3">
-    <label><input type="checkbox" name="genres" value="action" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'action')}"> Action</label>
-    <label><input type="checkbox" name="genres" value="romance" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'romance')}"> Romance</label>
-    <label><input type="checkbox" name="genres" value="fantasy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'fantasy')}"> Fantasy</label>
-    <br>
-    <label><input type="checkbox" name="genres" value="suspense" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'suspense')}"> Suspense</label>
-    <label><input type="checkbox" name="genres" value="comedy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'comedy')}"> Comedy</label>
-    <label><input type="checkbox" name="genres" value="others" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'others')}"> Others</label>
+    <label><input type="checkbox" name="genres" value="action" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'action')}">アクション</label>
+    <label><input type="checkbox" name="genres" value="romance" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'romance')}">ロマンス</label>
+    <label><input type="checkbox" name="genres" value="fantasy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'fantasy')}">ファンタジー</label>
+    <label><input type="checkbox" name="genres" value="suspense" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'suspense')}">サスペンス・ホラー</label>
+    <label><input type="checkbox" name="genres" value="comedy" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'comedy')}">コメディ</label>
+    <label><input type="checkbox" name="genres" value="others" th:checked="${webtQuery.genres != null and #arrays.contains(webtQuery.genres, 'others')}">その他</label>
+
+</td>
+<td>
+<button type="submit" th:formaction="@{/webt/query}">検索</button>
 </td>
 
 </table>
 
-      <button type="submit" th:formaction="@{/webt/query}">検索</button>
+      
     </div>
     <div th:if="${#fields.hasErrors('startYearFrom')}" th:errors="*{startYearFrom}" th:errorclass="red"></div>
     <div th:if="${#fields.hasErrors('startYearTo')}" th:errors="*{startYearTo}" th:errorclass="red"></div>
     <hr>
    
-  <button type="button" onclick="location.href='/webt/create'">新規追加</button>
+  
    
   </form>
 

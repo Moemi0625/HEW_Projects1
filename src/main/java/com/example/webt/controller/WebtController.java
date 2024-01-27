@@ -48,31 +48,31 @@ public class WebtController {
         Page<Webt> webtPage = webtRepository.findAll(pageable);
         
         mv.addObject("webtQuery", new WebtQuery());
-        mv.addObject("webtPage", webtPage); // ②
+        mv.addObject("webtPage", webtPage); 
 		mv.addObject("webtList", webtPage.getContent()); 
-		session.setAttribute("webtQuery", new WebtQuery()); // ④
+		session.setAttribute("webtQuery", new WebtQuery()); 
         return mv;
     }
     
    
     @PostMapping("/webt/query")
 	public ModelAndView queryWebt(@ModelAttribute WebtQuery webtQuery, BindingResult result,
-			@PageableDefault(page = 0, size = 5) Pageable pageable, // ①
+			@PageableDefault(page = 0, size = 5) Pageable pageable, 
 
 			ModelAndView mv) {
 		mv.setViewName("webtList");
-		Page<Webt> webtPage = null; // ②
+		Page<Webt> webtPage = null; 
 		if (webtService.isValid(webtQuery, result)) {
 			// エラーがなければ検索
-			webtPage = webtDaoImpl.findByCriteria(webtQuery, pageable); // ③
+			webtPage = webtDaoImpl.findByCriteria(webtQuery, pageable); 
 			// 入力された検索条件を session に保存
-			session.setAttribute("webtQuery", webtQuery); // ④
-			mv.addObject("webtPage", webtPage); // ⑤
-			mv.addObject("webtList", webtPage.getContent()); // ⑥
+			session.setAttribute("webtQuery", webtQuery); 
+			mv.addObject("webtPage", webtPage); 
+			mv.addObject("webtList", webtPage.getContent()); 
 		} else {
 			// エラーがあった場合検索
-			mv.addObject("webtPage", null); // ⑤’
-			mv.addObject("webtList", null); // ⑥’
+			mv.addObject("webtPage", null); 
+			mv.addObject("webtList", null); 
 		}
 		return mv;
 	}
@@ -94,7 +94,7 @@ public class WebtController {
     public ModelAndView createWebt(ModelAndView mv) {
         mv.setViewName("webtForm");
         mv.addObject("webtData", new WebtData());
-        session.setAttribute("mode", "create"); // ③
+        session.setAttribute("mode", "create"); 
         return mv;
     }
 
@@ -128,7 +128,7 @@ public class WebtController {
             // エラーなし
             Webt webt = webtData.toEntity();
 
-            // If it's a new entry, set a default rating of 3
+            // 新規追加時はRatingは3で固定しておく
             if (webtData.getRating() == null) {
                 webt.setRating(3);
             }
@@ -166,9 +166,9 @@ public class WebtController {
     @GetMapping("/webt/{id}")
 	public ModelAndView webtById(@PathVariable(name = "id") int id, ModelAndView mv) {
 		mv.setViewName("webtForm");
-		Webt webt = webtRepository.findById(id).get(); // ①
-		mv.addObject("webtData", webt); // ※ b
-		session.setAttribute("mode", "update"); // ②
+		Webt webt = webtRepository.findById(id).get(); 
+		mv.addObject("webtData", webt); 
+		session.setAttribute("mode", "update"); 
 		return mv;
 	}
 
@@ -179,7 +179,7 @@ public class WebtController {
 		if (!result.hasErrors() && isValid) {
 			// エラーなし
 			Webt webt = webtData.toEntity();
-			webtRepository.saveAndFlush(webt); // ①
+			webtRepository.saveAndFlush(webt); 
 			return "redirect:/webt";
 		} else {
 			// エラーあり
