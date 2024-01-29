@@ -1,0 +1,58 @@
+ body {
+    margin: auto;
+    max-width: 80%; 
+}
+
+h1{
+text-align:center;
+margin-top:70px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+#image-container {
+    max-width: 40%; /* Adjust the max-width as needed */
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th{
+    padding: 10px;
+    text-align: center;
+}
+
+td{
+padding: 10px;
+}
+
+img {
+    max-width: 260px;
+    height: auto;
+    margin-right:30px;
+}
+
+#return-button {
+    text-align: center; 
+    margin: 25px auto 40px;;
+   
+}
+
+#return-button button{
+width:150px;
+}
+#comments-section{
+margin:30px;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WEBTOON LIST</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <style>
+		 body {
+    margin: auto;
+    max-width: 90%; 
+}
+
+th{
+	width:120px;
+}
+
+td{
+	width:200px;
+}
+
+h1{
+text-align:center;
+margin-top:70px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+#image-container {
+    max-width: 40%; /* Adjust the max-width as needed */
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th{
+    padding: 10px;
+    text-align: center;
+}
+
+td{
+padding: 10px;
+}
+
+img {
+    max-width: 280px;
+    height: auto;
+    margin-right:30px;
+}
+
+#return-button {
+    text-align: center; 
+    margin: 25px auto 40px;;
+   
+}
+
+#return-button button{
+width:150px;
+}
+#comments-section{
+margin:30px;
+}
+
+
+	</style>
+</head>
+<body>
+
+<h1>Webtoon Details</h1>
+
+<div class="main-container">
+<div id="image-container">
+   <img th:if="${webt != null and webt.imagePath != null and webt.imagePath != ''}" th:src="@{${webt.imagePath}}" alt="Webtoon Image">
+			<!-- 表紙画像がアップロードされていない場合、デフォルトの画像を表示 -->
+			<img th:if="${webt == null or webt.imagePath == null or webt.imagePath == ''}" src="/images/webt0.jpg" alt="Default">
+          
+</div>
+
+
+<table>
+
+    <tr>
+        <th>作品ID</th>
+        <td th:text="${webt.id}"></td>
+    </tr>
+    <tr>
+        <th>作品タイトル</th>
+        <td th:text="${webt.title}"></td>
+    </tr>
+    <tr>
+        <th>作者</th>
+        <td th:text="${webt.author}"></td>
+    </tr>
+   
+    <tr>
+        <th>レビュー</th>
+        <td th:text="${webt.rating != null ? '★'.repeat(webt.rating) : ''}"></td>
+        <!--<td><p><ion-icon name="heart-outline"></ion-icon></p></td>-->
+    </tr>
+    <tr>
+        <th>リリース年</th>
+        <td th:text="${webt.startYear}"></td>
+    </tr>
+    <tr>
+        <th>ジャンル</th>
+        <td>
+            <span th:each="genre, iterStat : ${webt.genres}">
+                <span th:text="${genre}"></span>
+                <span th:if="${!iterStat.last}">、</span>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <th>ステータス</th>
+        <td th:text="${webt.done == 'Y' ? '完結' : '未完結'}"></td>
+    </tr>
+     <tr>
+        <th>あらすじ</th>
+        <td th:text="${webt.synopsis}"></td>
+    </tr>
+    
+    
+</table>
+
+<!-- Comments section -->
+<div id="comments-section">
+    <h3>comments</h3>
+      <!-- Display existing comments if any -->
+    <!-- ... -->
+		<div style="border:1px solid #ddd; font-size: 13px; width:280px;  margin:10px;">
+			<p style="padding: 5px;">漫画の時も面白かったけど、最近ドラマ化もして人気出たよね！</p>
+		</div>
+		<div style="border:1px solid #ddd; font-size: 13px; width:280px;  margin:10px;">
+			<p style="padding: 5px;">漫画の時も面白かったけど、最近ドラマ化もして人気出たよね！</p>
+		</div>
+    <form action="/webt/comments" method="post" style="margin-left: 10px;">
+        <textarea name="comment" rows="5" cols="40" placeholder="コメントを入力してください"></textarea>
+        <br>
+        <button type="submit" style="width:120px; margin:auto; background: black; color: white;">コメントする</button>
+    </form>
+</div>
+</div>
+
+<div id="return-button" style="position: fixed;">
+    <button onclick="location.href='/webt'">作品一覧</button>
+    <button onclick="location.href='/webt/list'">お気に入り登録</button>
+</div>
+
+
+
+</body>
+</html>

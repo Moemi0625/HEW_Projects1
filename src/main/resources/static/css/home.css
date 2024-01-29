@@ -1,0 +1,46 @@
+   body {
+	    overflow-x: hidden; /* Disable horizontal scrolling */
+	    overflow-y: hidden; /* Disable horizontal scrolling */
+	  }
+	  .swiper-container {
+	    height: 100%;
+	    max-width: 600px; /* Keep the maximum width for the images */
+	    margin: 0 auto; /* Center the slider horizontally */
+	    position: relative;
+	  }
+	
+	  .swiper-slide {
+	    text-align: center;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+	    justify-content: center;
+	    transition: opacity 0.5s ease, transform 5s ease;
+	  }
+	
+	  .swiper-slide.active {
+	    opacity: 1;
+	  }
+	
+	  .swiper-container img {
+	    max-width: 100%; /* Set a maximum width for the images */
+	    height: auto; /* Allow the height to adjust proportionally */
+	    margin-bottom: 50px; /* Center the image horizontally */
+	    margin-top:-20px;
+	    max-height: 600px; /* Keep the maximum height for the images */
+	  }
+	
+	  .swiper-slide h3 {
+	    font-size: 15px;
+	    white-space: nowrap;
+	    display: inline-block;
+	    vertical-align: middle;
+	  }
+	
+	  .swiper-button-next, .swiper-button-prev {
+	    position: absolute;
+	    top: 50%;
+	    transform: translateY(-50%);
+	    margin: 0; /* Remove default margin */
+	   display: none !important;
+  }

@@ -1,0 +1,91 @@
+  
+    h1{
+    margin:50px auto 30px;
+    }
+        .main-section webt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .webtoon-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .webtoon-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            width: 200px; /* Adjust the width as needed */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .webtoon-details {
+            text-align: center;
+            margin-top: 10px;
+        }
+ 
+    #nav {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    #nav li {
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    #nav a,
+    #nav span {
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        color: #333;
+        background-color: #fff;
+        transition: background-color 0.3s;
+    }
+
+    #nav a:hover {
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    
+    #add-button{
+		background: dimgray;
+		color: white;
+	}
+
+    #nav span.current {
+        background-color: yellow;
+         color: #333;
+    }
+
+    #nav span.disabled {
+        pointer-events: none;
+        color: #aaa;
+        border-color: #aaa;
+    }
+    
+    button#add-button {
+        position: fixed;
+        top: 10px; /* Adjust the top position as needed */
+        right: 10px; /* Adjust the right position as needed */
+        padding: 10px;
+       
+    }

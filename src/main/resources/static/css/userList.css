@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+
+      .list-title button{
+        margin-left: 75%;
+      }
+  
+      .profile-container img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-right:15px;
+      }
+  
+     .profile-container{
+     margin:20px 15px 50px;
+     display:inline-flex; 
+	border:1px solid #ddd; 
+	padding:20px; width:28%; "
+     }
+     
+     .profile-contents{
+     width:100%;
+     text-align:center;
+     
+     }
+
+
+	  h2{
+	  font-size: 25px;
+	  
+	  }

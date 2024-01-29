@@ -1,0 +1,34 @@
+ body {   
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1{
+	text-align:center;
+	margin-top:50px;
+}
+
+form {
+    text-align: center;
+}
+
+table {
+    margin: 30px auto 30px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+label {
+    width: 150px; /* 調整が必要に応じて変更してください */
+    text-align: center;
+    margin-right: 10px;
+}
+
+button {
+    margin-top: 10px;
+}
