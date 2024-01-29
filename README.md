@@ -17,6 +17,6 @@ Form で入力した作者名(author)が webtList.html, webtDetails.html に表�
 
 各作品のジャンルを検索機能で絞れません。
 
-### 4. 複数のpostgreSQLのデータベースを接続できない
+### ~~4. 複数のpostgreSQLのデータベースを接続できない~~
 
 ログイン認証用のwebt_acctテーブルが接続出来ているか
