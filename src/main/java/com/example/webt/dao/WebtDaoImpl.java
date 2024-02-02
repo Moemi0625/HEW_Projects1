@@ -101,7 +101,7 @@ public class WebtDaoImpl implements WebtDao{
 	    }
 	    predicates.add(builder.like(root.get(Webt_.TITLE), title));
 
-	    // 作者名
+	    //author
 	    String author = "";
 	    if (webtQuery.getAuthor().length() > 0) {
 	        author = "%" + webtQuery.getAuthor() + "%";
@@ -110,7 +110,7 @@ public class WebtDaoImpl implements WebtDao{
 	    }
 	    predicates.add(builder.like(root.get(Webt_.AUTHOR), author));
 
-	 // ジャンル
+	    //genres
 	    if (webtQuery.getGenres() != null && webtQuery.getGenres().length > 0) {
 	        Expression<String> genreExpression = root.get(Webt_.GENRES);
 
@@ -123,19 +123,19 @@ public class WebtDaoImpl implements WebtDao{
 	        predicates.add(genreCondition);
 	    }
 
-	    // 開始～
+	    // year~
 	    if (!webtQuery.getStartYearFrom().equals("")) {
 	        predicates.add(builder.and(builder.greaterThanOrEqualTo(root.get(Webt_.STARTYEAR),
 	                Utils.str2date(webtQuery.getStartYearFrom()))));
 	    }
-
-	    // ～終了で検索
+	    
+	    //~ year
 	    if (!webtQuery.getStartYearTo().equals("")) {
 	        predicates.add(builder.and(
 	                builder.lessThanOrEqualTo(root.get(Webt_.STARTYEAR), Utils.str2date(webtQuery.getStartYearTo()))));
 	    }
 
-	    // 完了
+	    //status(Y/N)
 	    if (webtQuery.getDone() != null && webtQuery.getDone().equals("Y")) {
 	        predicates.add(builder.and(builder.equal(root.get(Webt_.DONE), webtQuery.getDone())));
 	    }

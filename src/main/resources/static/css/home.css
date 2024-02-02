@@ -2,6 +2,15 @@
 	    overflow-x: hidden; /* Disable horizontal scrolling */
 	    overflow-y: hidden; /* Disable horizontal scrolling */
 	  }
+	  
+	  
+	  .main-section{
+		padding:80px auto 30px; 
+		margin: 0px 150px 0px; 
+		background:white;  
+		position: relative;
+	    overflow: hidden;
+	  }
 	  .swiper-container {
 	    height: 100%;
 	    max-width: 600px; /* Keep the maximum width for the images */
@@ -44,3 +53,33 @@
 	    margin: 0; /* Remove default margin */
 	   display: none !important;
   }
+  
+   .swiper-container::before,
+  .swiper-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px; /* Adjust the width of the color overlay as needed */
+    background: white; /* Adjust the color as needed */
+  }
+
+  .swiper-container::before {
+    left: 0;
+  }
+
+  .swiper-container::after {
+    right: 0;
+  }
+
+  /* Rest of your existing styles */
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  .swiper-slide {
+    width: 100%; /* Adjust the width of each slide as needed */
+  }
+  
+  
