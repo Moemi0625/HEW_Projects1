@@ -13,7 +13,6 @@
     <link rel="icon" sizes="200x200" href="./images/favicon.png">
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </head>
 
 <body>
@@ -27,141 +26,140 @@
 	      <img src="./images/logo-site1.png">
 	  </div>
 
-<div class="login-button">
-    <button><a th:href="@{/}">ログイン</a></button>
-    <button><a th:href="@{/webt}">作品一覧</a></button>
-    <button><a th:href="@{/new}">初めての方へ</a></button>
-     <button><a th:href="@{/contactForm}">お問い合わせ</a></button>
-</div>
-
- <div>
-  
-   <div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="/images/webt1.jpg" alt="漫画1">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt2.jpg" alt="漫画2">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt3.jpg" alt="漫画3">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt26.jpg" alt="漫画4">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt5.jpg" alt="漫画5">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt6.jpg" alt="漫画6">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt7.jpg" alt="漫画7">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt8.jpg" alt="漫画8">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt9.jpg" alt="漫画9">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt10.jpg" alt="漫画10">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt11.jpg" alt="漫画11">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt12.jpg" alt="漫画12">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt13.jpg" alt="漫画13">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt14.jpg" alt="漫画14">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt15.jpg" alt="漫画15">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt16.jpg" alt="漫画16">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt17.jpg" alt="漫画17">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt18.jpg" alt="漫画18">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt9.jpg" alt="漫画19">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt10.jpg" alt="漫画20">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt11.jpg" alt="漫画21">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt22.jpg" alt="漫画22">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt23.jpg" alt="漫画23">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt24.jpg" alt="漫画24">
-        </div>
-        <div class="swiper-slide">
-            <img src="/images/webt27.jpg" alt="漫画25">
-        </div>
-        
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-</div>
-
-
- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
- 
-<script>
-  var mySwiper = new Swiper('.swiper-container', {
-    effect: 'coverflow',
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 3,
-    loop: true,
-    loopAdditionalSlides: 3,
-    coverflowEffect: {
-      rotate: 0,
-      stretch:10,
-      depth: 200,
-      modifier: 1,
-      slideShadows: false,
-    },
-    spaceBetween: 30,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    speed: 800,
-    on: {
-      slideChange: function () {
-        var activeSlide = this.slides[this.activeIndex];
-        var allSlides = this.slides;
-        for (var i = 0; i < allSlides.length; i++) {
-          allSlides[i].classList.remove('active');
-        }
-        activeSlide.classList.add('active');
-      },
-    },
-  });
-</script>
-
+	<div class="login-button">
+	    <button><a th:href="@{/}">ログイン</a></button>
+	    <button><a th:href="@{/webt}">作品一覧</a></button>
+	    <button><a th:href="@{/new}">初めての方へ</a></button>
+	     <button><a th:href="@{/contactForm}">お問い合わせ</a></button>
+	</div>
+	
+	 <div>
+	  
+	   <div class="swiper-container">
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide">
+	            <img src="/images/webt1.jpg" alt="漫画1">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt2.jpg" alt="漫画2">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt3.jpg" alt="漫画3">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt26.jpg" alt="漫画4">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt5.jpg" alt="漫画5">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt6.jpg" alt="漫画6">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt7.jpg" alt="漫画7">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt8.jpg" alt="漫画8">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt9.jpg" alt="漫画9">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt10.jpg" alt="漫画10">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt11.jpg" alt="漫画11">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt12.jpg" alt="漫画12">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt13.jpg" alt="漫画13">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt14.jpg" alt="漫画14">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt15.jpg" alt="漫画15">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt16.jpg" alt="漫画16">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt17.jpg" alt="漫画17">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt18.jpg" alt="漫画18">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt9.jpg" alt="漫画19">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt10.jpg" alt="漫画20">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt11.jpg" alt="漫画21">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt22.jpg" alt="漫画22">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt23.jpg" alt="漫画23">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt24.jpg" alt="漫画24">
+	        </div>
+	        <div class="swiper-slide">
+	            <img src="/images/webt27.jpg" alt="漫画25">
+	        </div>
+	        
+	    </div>
+	    <div class="swiper-pagination"></div>
+	    <div class="swiper-button-next"></div>
+	    <div class="swiper-button-prev"></div>
+	</div>
+	
+	
+	 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+	 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	 
+	<script>
+	  var mySwiper = new Swiper('.swiper-container', {
+	    effect: 'coverflow',
+	    grabCursor: true,
+	    centeredSlides: true,
+	    slidesPerView: 3,
+	    loop: true,
+	    loopAdditionalSlides: 3,
+	    coverflowEffect: {
+	      rotate: 0,
+	      stretch:10,
+	      depth: 200,
+	      modifier: 1,
+	      slideShadows: false,
+	    },
+	    spaceBetween: 30,
+	    navigation: {
+	      nextEl: '.swiper-button-next',
+	      prevEl: '.swiper-button-prev',
+	    },
+	    autoplay: {
+	      delay: 3000,
+	      disableOnInteraction: false,
+	    },
+	    speed: 800,
+	    on: {
+	      slideChange: function () {
+	        var activeSlide = this.slides[this.activeIndex];
+	        var allSlides = this.slides;
+	        for (var i = 0; i < allSlides.length; i++) {
+	          allSlides[i].classList.remove('active');
+	        }
+	        activeSlide.classList.add('active');
+	      },
+	    },
+	  });
+	</script>
 
   </section>
 

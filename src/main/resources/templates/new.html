@@ -15,10 +15,9 @@
   
   <body style="overflow: visible;">
 	  
-  <!-- navigation.html をインクルード -->
-<div th:replace="navigation :: navigation(pageName)"></div>
-
-
+    <!-- navigation.htmlをインクルード -->
+	<div th:replace="navigation"></div>
+  
  <button class="mailform" th:attr="data-href=@{/contactForm}">
     <a th:href="@{/contactForm}" style="color: black; text-decoration: none;">お問い合わせ</a>
 </button>
