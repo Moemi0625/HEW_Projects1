@@ -44,7 +44,7 @@ public class WebtController {
 
     @GetMapping("/webt")
     public ModelAndView showWebtList(ModelAndView mv,
-    		@PageableDefault(page = 0, size = 5, sort = "id") Pageable pageable) {
+    		@PageableDefault(page = 0, size = 8, sort = "id") Pageable pageable) {
         mv.setViewName("webtList");
         
         Page<Webt> webtPage = webtRepository.findAll(pageable);
@@ -59,7 +59,7 @@ public class WebtController {
    
     @PostMapping("/webt/query")
 	public ModelAndView queryWebt(@ModelAttribute WebtQuery webtQuery, BindingResult result,
-			@PageableDefault(page = 0, size = 5) Pageable pageable, 
+			@PageableDefault(page = 0, size = 8) Pageable pageable, 
 
 			ModelAndView mv) {
 		mv.setViewName("webtList");
@@ -81,7 +81,7 @@ public class WebtController {
 
 
     @GetMapping("/webt/query")
-    public ModelAndView queryWebt(@PageableDefault(page = 0, size = 5) Pageable pageable, ModelAndView mv) {
+    public ModelAndView queryWebt(@PageableDefault(page = 0, size = 8) Pageable pageable, ModelAndView mv) {
         mv.setViewName("webtList");
         // session に保存されている条件で検索
         WebtQuery webtQuery = (WebtQuery) session.getAttribute("webtQuery");

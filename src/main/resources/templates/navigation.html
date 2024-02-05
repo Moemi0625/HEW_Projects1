@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <html lang="jp">
   <head>
     <meta charset="UTF-8" />
@@ -11,6 +10,7 @@
     <script defer src="script.js"></script>
     <link rel="icon" href="favicon.ico">
     <link rel="icon" sizes="200x200" href="./images/favicon.png">
+    
      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -19,53 +19,58 @@
 
     <div class="navigation">
       <ul>
-        <li class="list active">
+       <li class="list" th:classappend="${pageName == 'home' ? 'active' : ''}">
            <a th:href="@{/home}">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
           </a>
         </li>
-        <li class="list">
+        
+       <li class="list" th:classappend="${pageName == 'webt' ? 'active' : ''}">
            <a th:href="@{/webt}">
             <span class="icon"
               ><ion-icon name="search-outline"></ion-icon></span>
             <span class="title">作品一覧・検索</span>
           </a>
         </li>
+        
         <li class="list">
-          <a href="#">
+          <a th:href="@{/#}">
             <span class="icon"
               ><ion-icon name="bookmark-outline"></ion-icon>
             </span>
             <span class="title">BOOKMARK</span>
           </a>
         </li>
+        
         <li class="list">
-          <a href="#">
+         <a th:href="@{/#}">
             <span class="icon"
               > <ion-icon name="calendar-clear-outline"></ion-icon></span>
             <span class="title">SNS掲示板</span>
           </a>
         </li>
-        <li class="list">
+        
+        <li class="list" th:classappend="${pageName == 'userList' ? 'active' : ''}">
           <a th:href="@{/user/list}">
             <span class="icon"
               ><ion-icon name="grid-outline"></ion-icon></span>
             <span class="title">USER一覧</span>
           </a>
         </li>
-        <li class="list">
-          <a th:href="@{/new}">
-            <span class="icon"
-              ><ion-icon name="help-circle-outline"></ion-icon
-            ></span>
-            <span class="title">初めての方へ</span>
-          </a>
-        </li>
         
+        <!--new.html-->
+        <li class="list" th:classappend="${pageName == 'new' ? 'active' : ''}">
+		    <a th:href="@{/new}">
+		        <span class="icon"><ion-icon name="help-circle-outline"></ion-icon></span>
+		        <span class="title">初めての方へ</span>
+		    </a>
+		</li>
+
+ 		<!--navigation 空白スペース-->
         <div class="login">
 			
-        <li class="list">
+       <li class="list" th:classappend="${pageName == 'login' ? 'active' : ''}">
          <a th:href="@{/login}">
 		    <span class="icon">
 		     <ion-icon name="person-circle-outline"></ion-icon>
@@ -74,7 +79,7 @@
 		</a>
 	  </li>
         
-        <li class="list" >
+       <li class="list" th:classappend="${pageName == 'logout' ? 'active' : ''}">
           <a th:href="@{/logout}">
             <span class="icon">
               <ion-icon name="log-out-outline"></ion-icon>
@@ -82,27 +87,52 @@
             <span class="title" >LOGOUT</span>
           </a>
         </li>
-
-          <div id="lo" class="lo">
-            <div class="lo-content">
-              <h4>ログアウトしてもよろしいですか？</h4>
-              <button onclick="closeModal()" class="lo-btn">キャンセル</button>
-              <button onclick="logout()" class="lo-btn">はい</button>
-            </div>
-          </div>
-          <script src="script.js"></script>
+        
         <li class="list">
-          <a href="#">
+         <a th:href="@{/#}">
             <span class="icon"
               ><ion-icon name="settings-outline"></ion-icon></span>
             <span class="title">管理者ページ</span>
           </a>
         </li>
+        
         <div class="navlogo"><p>
       <img src="./images/logo-site2.png">©m.akahori</p></div>
       </div>
       </ul>
     </div>
+    
+      <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    
+     <script>
+        const list = document.querySelectorAll(".list");
+        const currentPage = document.body.getAttribute("data-page");
+
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove("active")
+            );
+            this.classList.add("active");
+        }
+
+        list.forEach((item) => {
+            item.addEventListener("click", activeLink);
+        });
+
+        // 現在のページに基づいて初期の active 状態を設定
+        list.forEach((item) => {
+            if (item.getAttribute("th:class").includes(currentPage)) {
+                item.classList.add("active");
+            }
+        });
+    </script>
 
 </body>
 </html>

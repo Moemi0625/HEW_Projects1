@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
       .list-title button{
         margin-left: 75%;
       }
@@ -16,7 +15,7 @@
      margin:20px 15px 50px;
      display:inline-flex; 
 	border:1px solid #ddd; 
-	padding:20px; width:28%; "
+	padding:20px; width:28%; 
      }
      
      .profile-contents{
