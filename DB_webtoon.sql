@@ -1,7 +1,7 @@
-DROP TABLE webt;
 CREATE USER webtuser WITH PASSWORD 'pass';
 CREATE DATABASE webtdb OWNER webtuser ENCODING 'UTF8'; 
 
+DROP TABLE IF EXISTS webt;
 
 CREATE TABLE webt
 (
@@ -31,3 +31,21 @@ VALUES
  ('Title11', 'Author11', 'Synopsis', ARRAY['romance', 'fantasy'], 2, 'N', 2022, '/images/webt2.jpg'),
  ('Title12', 'Author12', 'Synopsis', ARRAY[ 'comedy'], 3, 'Y', 2021, '/images/webt3.jpg'),
  ('Title13', 'Author13', 'Synopsis', ARRAY['action', 'fantasy'], 5, 'Y', 2021, '/images/webt4.jpg');
+
+
+DROP TABLE IF EXISTS webt_acct;
+
+CREATE TABLE webt_acct
+(
+    id SERIAL PRIMARY KEY,
+    login_id TEXT UNIQUE,
+    name TEXT,
+    password TEXT,
+    image_path TEXT
+);
+
+INSERT INTO webt_acct (login_id, name, password, image_path)
+VALUES
+('akahori', 'akahori', 'akahori0625', 'null');
+
+
