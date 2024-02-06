@@ -17,23 +17,23 @@
 </head>
 <body>
 
-    <div class="navigation">
+    <div class="navigation" th:fragment="navigation(menu)">
 			
       <ul>
-        <li class="list active"> <!--"active" をhome.htmlに固定-->
+        <li class="list" th:classappend="${menu == 'home'} ? 'active'"> <!--"active" をhome.htmlに固定-->
            <a th:href="@{/home}">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">HOME</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'webtList'} ? 'active'">
            <a th:href="@{/webt}">
             <span class="icon"
               ><ion-icon name="search-outline"></ion-icon></span>
             <span class="title">作品一覧・検索</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'bookmark'} ? 'active'">
           <a th:href="@{/#}">
             <span class="icon"
               ><ion-icon name="bookmark-outline"></ion-icon>
@@ -41,21 +41,21 @@
             <span class="title">BOOKMARK</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'sns'} ? 'active'">
          <a th:href="@{/#}">
             <span class="icon"
               > <ion-icon name="calendar-clear-outline"></ion-icon></span>
             <span class="title">SNS掲示板</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'userList'} ? 'active'">
           <a th:href="@{/user/list}">
             <span class="icon"
               ><ion-icon name="grid-outline"></ion-icon></span>
             <span class="title">USER一覧</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'new'} ? 'active'">
           <a th:href="@{/new}">
             <span class="icon"
               ><ion-icon name="help-circle-outline"></ion-icon
@@ -75,7 +75,7 @@
 		</a>
 	  </li>
         
-        <li class="list" >
+        <li class="list"  th:classappend="${menu == 'login'} ? 'active'">
           <a th:href="@{/logout}">
             <span class="icon">
               <ion-icon name="log-out-outline"></ion-icon>
@@ -83,7 +83,7 @@
             <span class="title" >LOGOUT</span>
           </a>
         </li>
-        <li class="list">
+        <li class="list" th:classappend="${menu == 'admin'} ? 'active'">
          <a th:href="@{/#}">
             <span class="icon"
               ><ion-icon name="settings-outline"></ion-icon></span>
